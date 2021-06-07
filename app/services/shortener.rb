@@ -2,7 +2,9 @@ require 'digest/sha2'
 
 class Shortener
 
-  attr_reader :url, :link_model 
+
+  attr_reader :url , :link_model
+
 
   def initialize(url, link_model = Link)
     @url = url
@@ -14,6 +16,7 @@ class Shortener
   end
 
   def lookup_code
+
     loop do
       code = get_fresh_code
       break code unless link_model.exists?(lookup_code: code)
@@ -25,6 +28,7 @@ class Shortener
   def get_fresh_code
     SecureRandom.uuid[0..6]
   end
+
 
 end
 
