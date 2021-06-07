@@ -33,7 +33,7 @@ RSpec.describe Link, type: :model do
     link.save
 
         link_2 = Link.new(
-      original_url: "https://www.favoritewebsite.com/articles/how-to-boogie",
+      original_url: "https://www.favoritewebsite.com/articles/how-to-twerk",
       lookup_code: "1234567"
     )
     expect(link_2.valid?).to be(false)
