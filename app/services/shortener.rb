@@ -14,11 +14,10 @@ class Shortener
       #2 check if it already exists
       #3 break out of the loop if it does
       #4 if not, get another code
-      i = 0
       loop do 
-        code = get_fresh_code(i)
+        code = get_fresh_code
         break code unless  link_model.exists?(lookup_code: code)
-        i = i + 1
+   
       end 
   end
 
@@ -26,10 +25,13 @@ class Shortener
     link_model.create(original_url: url, lookup_code: lookup_code)
   end
   
+private
 
-  def get_fresh_code(i)
-      code = Digest::SHA256.hexdigest(url)[i..(i + 6)]
-  end
+  def get_fresh_code
+      # code = Digest::SHA256.hexdigest(url)[i..(i + 6)]
+      SecureRandom.uuid[0..6]
+    end
+
 
 end
 
